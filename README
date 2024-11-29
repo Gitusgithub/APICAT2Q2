@@ -6,25 +6,25 @@ This is a simple REST API built with Flask that manages a product resource. You 
 
 1. **Clone the repository**
 
-   ```bash
+  
    git clone https://github.com/Gitusgithub/APICAT2Q2
    cd product-api
 Create a virtual environment
 
-bash
+
 
 python3 -m venv venv
 source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
 Install required dependencies
 
-bash
+
 
 pip install -r requirements.txt
 Run the API server
 
 Start the Flask server:
 
-bash
+
 
 python app.py
 The API will be running at http://127.0.0.1:5000.
@@ -47,7 +47,7 @@ Test the API with the client script
 
 To test the API automatically, you can run the client script:
 
-bash
+
 
 python client.py
 This will add products and display all products.
