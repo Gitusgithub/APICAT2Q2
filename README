@@ -1,0 +1,108 @@
+# Product API
+
+This is a simple REST API built with Flask that manages a product resource. You can create new products and retrieve the list of products using this API.
+
+## Setup Instructions
+
+1. **Clone the repository**
+
+   ```bash
+   git clone https://github.com/Gitusgithub/APICAT2Q2
+   cd product-api
+Create a virtual environment
+
+bash
+
+python3 -m venv venv
+source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
+Install required dependencies
+
+bash
+
+pip install -r requirements.txt
+Run the API server
+
+Start the Flask server:
+
+bash
+
+python app.py
+The API will be running at http://127.0.0.1:5000.
+
+Test the API manually
+
+You can use Postman or cURL to interact with the API.
+
+POST /products - Create a new product.
+Example Request:
+json
+
+{
+  "name": "Laptop",
+  "description": "A powerful laptop",
+  "price": 999.99
+}
+GET /products - Get all products.
+Test the API with the client script
+
+To test the API automatically, you can run the client script:
+
+bash
+
+python client.py
+This will add products and display all products.
+
+Endpoints
+POST /products: Accepts a JSON object to create a new product.
+GET /products: Retrieves a list of all products as JSON.
+Handling Requests and Responses
+POST /products
+
+Success: Responds with status 201 Created and the created product.
+Error: Responds with status 400 Bad Request if the input data is invalid.
+GET /products
+
+Success: Responds with status 200 OK and a list of all products.
+Dependencies
+Flask
+Flask-API
+Requests (for client script)
+markdown
+
+
+### 4. **requirements.txt**
+
+Flask==2.2.3 Flask-API==3.0 requests==2.31.0
+
+shell
+
+
+### Project Structure:
+
+product-api/ ├── app.py # Flask API code ├── client.py # Client script to interact with the API ├── requirements.txt # List of Python dependencies ├── README.md # Documentation file └── venv/ # Virtual environment (after setup)
+
+markdown
+
+
+### 5. **How to Test the Project:**
+
+1. Clone the repository and follow the setup instructions in `README.md`.
+2. Run the Flask server using `python app.py`.
+3. Use the `client.py` script to add products and retrieve the list of products.
+
+---
+
+### Explanation:
+
+- **app.py**: This file contains the logic for the Flask API, including the two endpoints: `/products` for creating and retrieving products.
+- **client.py**: This script is a Python client using the `requests` library to send POST and GET requests to the API.
+- **README.md**: Contains setup instructions, API documentation, and usage examples.
+- **requirements.txt**: Specifies the necessary Python dependencies for the project.
+
+
+
+
+
+
+
+
