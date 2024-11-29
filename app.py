@@ -1,32 +1,37 @@
 from flask import Flask, request, jsonify
+from flask_api import status
 
 app = Flask(__name__)
 
-# In-memory storage for products
+# In-memory product storage (this could be replaced with a database)
 products = []
 
-# Endpoint to create a new product
+# Product model for validation
+def validate_product(data):
+    if not isinstance(data.get('name'), str) or not isinstance(data.get('description'), str) or not isinstance(data.get('price'), (int, float)):
+        return False
+    return True
+
 @app.route('/products', methods=['POST'])
 def create_product():
     data = request.get_json()
-    if not data or 'name' not in data or 'description' not in data or 'price' not in data:
-        return jsonify({"error": "Invalid input"}), 400
-    if not isinstance(data['price'], (int, float)):
-        return jsonify({"error": "Price must be a number"}), 400
-    
-    product = {
-        "id": len(products) + 1,
-        "name": data['name'],
-        "description": data['description'],
-        "price": data['price']
-    }
-    products.append(product)
-    return jsonify(product), 201
 
-# Endpoint to get all products
+    if not data or not validate_product(data):
+        return jsonify({"error": "Invalid data"}), status.HTTP_400_BAD_REQUEST
+
+    # Create a new product and add to the list
+    new_product = {
+        'name': data['name'],
+        'description': data['description'],
+        'price': data['price']
+    }
+    products.append(new_product)
+    
+    return jsonify(new_product), status.HTTP_201_CREATED
+
 @app.route('/products', methods=['GET'])
 def get_products():
-    return jsonify(products), 200
+    return jsonify(products), status.HTTP_200_OK
 
 if __name__ == '__main__':
     app.run(debug=True)
